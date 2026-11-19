@@ -5,6 +5,8 @@
 #include <QStackedWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QUrl>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -59,10 +61,14 @@ QWidget* MainWindow::createMainPage()
     button_sign->setFont(font_sign);
 
     QPushButton* button_about = new QPushButton("О нас", page);
+    QPushButton* button_photo = new QPushButton("Фото", page);
+    QPushButton* button_teachers = new QPushButton("Педагоги", page);
 
     QVBoxLayout* layout_right = new QVBoxLayout;
     layout_right->setSpacing(20);
     layout_right->addWidget(button_about);
+    layout_right->addWidget(button_photo);
+    layout_right->addWidget(button_teachers);
 
     QHBoxLayout* layout_center = new QHBoxLayout;
     layout_center->setSpacing(40);
@@ -75,6 +81,10 @@ QWidget* MainWindow::createMainPage()
     layout_main->addStretch();
     layout_main->addLayout(layout_center);
     layout_main->addStretch();
+
+    connect(button_photo, &QPushButton::clicked, this, []() {
+        QDesktopServices::openUrl(QUrl("https://disk.yandex.ru/d/-_jKPWhKPeDFEQ"));
+    });
 
     return page;
 }
