@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "napravleniawindow.h"
 #include <QLabel>
 #include <QIcon>
 #include <QPushButton>
@@ -16,9 +17,15 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/img/00.png"));
 
     m_stack = new QStackedWidget(this);
+    m_direction = new DirectionWindow(this);
     setCentralWidget(m_stack);
 
     m_stack->addWidget(createMainPage());
+    m_stack->addWidget(m_direction);
+
+    connect(m_direction, &DirectionWindow::backRequested, this, [this]() {
+        showPage(m_stack->widget(0));
+    });
 }
 
 MainWindow::~MainWindow() = default;
@@ -84,6 +91,10 @@ QWidget* MainWindow::createMainPage()
 
     connect(button_photo, &QPushButton::clicked, this, []() {
         QDesktopServices::openUrl(QUrl("https://disk.yandex.ru/d/-_jKPWhKPeDFEQ"));
+    });
+
+    connect(button_sign, &QPushButton::clicked, this, [this]() {
+        showPage(m_direction);
     });
 
     return page;

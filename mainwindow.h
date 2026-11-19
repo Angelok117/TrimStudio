@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 class QStackedWidget;
+class DirectionWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -18,5 +19,6 @@ private:
     void showPage(QWidget* page);
 
     QStackedWidget* m_stack;
+    DirectionWindow* m_direction;
 };
 #endif
