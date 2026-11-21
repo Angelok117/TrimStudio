@@ -16,7 +16,7 @@ TeachersWindow::TeachersWindow(QWidget *parent)
     label_title->setAlignment(Qt::AlignCenter);
 
     QListWidget* list_teachers = new QListWidget(this);
-    list_teachers->setIconSize(QSize(120, 120));
+    list_teachers->setIconSize(QSize(120, 180));
     list_teachers->addItem(new QListWidgetItem(QIcon(":/img/img/1.jpg"), "Сычуанский, Сальса"));
     list_teachers->addItem(new QListWidgetItem(QIcon(":/img/img/2.jpg"), "Соня-Спайс, Бачата"));
     list_teachers->addItem(new QListWidgetItem(QIcon(":/img/img/3.jpg"), "Соня-Сноу, Румба"));
