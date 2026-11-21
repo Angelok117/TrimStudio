@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/img">
         <file>00.png</file>
+        <file>img/sofa.png</file>
+        <file>img/angel.png</file>
+        <file>img/sonya.png</file>
     </qresource>
 </RCC>
