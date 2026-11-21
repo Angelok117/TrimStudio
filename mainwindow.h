@@ -5,6 +5,7 @@
 
 class QStackedWidget;
 class DirectionWindow;
+class TeachersWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -20,5 +21,6 @@ private:
 
     QStackedWidget* m_stack;
     DirectionWindow* m_direction;
+    TeachersWindow* m_teachers;
 };
 #endif
