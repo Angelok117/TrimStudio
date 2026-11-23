@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "napravleniawindow.h"
 #include "aboutwindow.h"
+#include "pricewindow.h"
 #include <QLabel>
 #include <QIcon>
 #include <QPushButton>
@@ -20,17 +21,22 @@ MainWindow::MainWindow(QWidget *parent)
     m_stack = new QStackedWidget(this);
     m_direction = new DirectionWindow(this);
     m_about = new AboutWindow(this);
+    m_price = new PriceWindow(this);
     setCentralWidget(m_stack);
 
     m_stack->addWidget(createMainPage());
     m_stack->addWidget(m_direction);
     m_stack->addWidget(m_about);
+    m_stack->addWidget(m_price);
 
     connect(m_direction, &DirectionWindow::backRequested, this, [this]() {
         showPage(m_stack->widget(0));
     });
     connect(m_about, &AboutWindow::homeRequested, this, [this]() {
         showPage(m_stack->widget(0));
+    });
+    connect(m_direction, &DirectionWindow::nextRequested, this, [this]() {
+        showPage(m_price);
     });
 }
 

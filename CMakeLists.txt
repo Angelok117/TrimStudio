@@ -15,6 +15,8 @@ qt_add_executable(TrimStudio
     napravleniawindow.h
     aboutwindow.cpp
     aboutwindow.h
+    pricewindow.cpp
+    pricewindow.h
     resour.qrc
 )
 
