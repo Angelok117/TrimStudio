@@ -21,7 +21,7 @@ PriceWindow::PriceWindow(QWidget *parent)
     label_title->setFont(font_title);
     label_title->setAlignment(Qt::AlignCenter);
 
-    m_label_days = new QLabel("Дней: 0", this);
+    m_label_days = new QLabel("Дней: 1", this);
 
     m_slider_months = new QSlider(Qt::Horizontal, this);
     m_slider_months->setRange(1, 12);
@@ -123,12 +123,19 @@ PriceWindow::PriceWindow(QWidget *parent)
     layout_main->addLayout(layout_buttons);
 }
 
-void PriceWindow::setLessonCount(int count){}
+void PriceWindow::setLessonCount(int count){
+    m_lessons = count;
+    m_label_days->setText("Дней: " + QString::number(count));
+}
 
-void PriceWindow::onCalculateClicked() {}
+void PriceWindow::onCalculateClicked(){
+    int months = m_slider_months->value();
+    int sum = m_lessons * months * 50;
+    m_line_sum->setText(QString::number(sum) + " р.");
+}
 
 void PriceWindow::onCheckChanged() {
-    m_button_confirm->setEnabled(true);
+    m_button_confirm->setEnabled(m_check_agree->isChecked() && !m_line_name->text().trimmed().isEmpty());
 }
 
 void PriceWindow::onConfirmClicked(){

@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_direction, &DirectionWindow::nextRequested, this, [this]() {
         showPage(m_price);
     });
+    connect(m_price, &PriceWindow::homeRequested, this, [this]() {
+        showPage(m_stack->widget(0));
+    });
 }
 
 MainWindow::~MainWindow() = default;
