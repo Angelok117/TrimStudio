@@ -5,6 +5,8 @@
 
 class QStackedWidget;
 class DirectionWindow;
+class AboutWindow;
+class PriceWindow;
 class TeachersWindow;
 class ScheduleWindow;
 
@@ -22,6 +24,8 @@ private:
 
     QStackedWidget* m_stack;
     DirectionWindow* m_direction;
+    AboutWindow* m_about;
+    PriceWindow* m_price;
     TeachersWindow* m_teachers;
     ScheduleWindow* m_schedule;
 };
