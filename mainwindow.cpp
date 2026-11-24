@@ -46,7 +46,11 @@ MainWindow::MainWindow(QWidget *parent)
     });
     connect(m_price, &PriceWindow::homeRequested, this, [this]() {
         showPage(m_stack->widget(0));
-    }); 
+    });
+
+    connect(m_price, &PriceWindow::backRequested, this, [this]() {
+        showPage(m_schedule);
+    });
 
     connect(m_teachers, &TeachersWindow::homeRequested, this, [this]() {
         showPage(m_stack->widget(0));
@@ -58,6 +62,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_schedule, &ScheduleWindow::backRequested, this, [this]() {
         showPage(m_direction);
+    });
+
+    connect(m_schedule, &ScheduleWindow::nextRequested, this, [this]() {
+        m_price->setLessonCount(m_schedule->lessonCount());
+        showPage(m_price);
     });
 }
 
