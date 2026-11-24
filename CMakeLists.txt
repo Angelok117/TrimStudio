@@ -13,6 +13,10 @@ qt_add_executable(TrimStudio
     mainwindow.h
     napravleniawindow.cpp
     napravleniawindow.h
+    teacherswindow.cpp
+    teacherswindow.h
+    schedulewindow.cpp
+    schedulewindow.h
     resour.qrc
 )
 

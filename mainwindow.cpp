@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "napravleniawindow.h"
+#include "teacherswindow.h"
+#include "schedulewindow.h"
 #include <QLabel>
 #include <QIcon>
 #include <QPushButton>
@@ -18,13 +20,29 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_stack = new QStackedWidget(this);
     m_direction = new DirectionWindow(this);
+    m_teachers = new TeachersWindow(this);
+    m_schedule = new ScheduleWindow(this);
     setCentralWidget(m_stack);
 
     m_stack->addWidget(createMainPage());
     m_stack->addWidget(m_direction);
+    m_stack->addWidget(m_teachers);
+    m_stack->addWidget(m_schedule);
 
     connect(m_direction, &DirectionWindow::backRequested, this, [this]() {
         showPage(m_stack->widget(0));
+    });
+
+    connect(m_teachers, &TeachersWindow::homeRequested, this, [this]() {
+        showPage(m_stack->widget(0));
+    });
+
+    connect(m_direction, &DirectionWindow::nextRequested, this, [this]() {
+        showPage(m_schedule);
+    });
+
+    connect(m_schedule, &ScheduleWindow::backRequested, this, [this]() {
+        showPage(m_direction);
     });
 }
 
@@ -95,6 +113,10 @@ QWidget* MainWindow::createMainPage()
 
     connect(button_sign, &QPushButton::clicked, this, [this]() {
         showPage(m_direction);
+    });
+
+    connect(button_teachers, &QPushButton::clicked, this, [this]() {
+        showPage(m_teachers);
     });
 
     return page;
